@@ -1,0 +1,85 @@
+<div class="form-container">
+  <h1>Hostel Admission Form</h1>
+  
+  <div *ngIf="submissionSuccess" class="alert success">
+    Admission submitted successfully! ✅
+  </div>
+
+  <div *ngIf="errorMessage" class="alert error">
+    {{ errorMessage }}
+  </div>
+
+  <form #admissionForm="ngForm" (ngSubmit)="submitForm(admissionForm)">
+    <div class="form-group">
+      <label for="fullName">Full Name</label>
+      <input type="text" id="fullName" name="fullName" 
+             [(ngModel)]="formData.fullName" required
+             [disabled]="submissionInProgress">
+    </div>
+
+    <div class="form-group">
+      <label for="dob">Date of Birth</label>
+      <input type="date" id="dob" name="dob" 
+             [(ngModel)]="formData.dob" required
+             [disabled]="submissionInProgress">
+    </div>
+
+    <div class="form-group">
+      <label for="gender">Gender</label>
+      <select id="gender" name="gender" 
+              [(ngModel)]="formData.gender" required
+              [disabled]="submissionInProgress">
+        <option value="" disabled>Select Gender</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email ID</label>
+      <input type="email" id="email" name="email" 
+             [(ngModel)]="formData.email" required
+             [disabled]="submissionInProgress">
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" 
+             [(ngModel)]="formData.phone" required
+             [disabled]="submissionInProgress">
+    </div>
+
+    <div class="form-group">
+      <label for="address">Address</label>
+      <textarea id="address" name="address" 
+                [(ngModel)]="formData.address" required
+                [disabled]="submissionInProgress"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="course">Course</label>
+      <input type="text" id="course" name="course" 
+             [(ngModel)]="formData.course" required
+             [disabled]="submissionInProgress">
+    </div>
+
+    <div class="form-group">
+      <label for="year">Year of Study</label>
+      <select id="year" name="year" 
+              [(ngModel)]="formData.year" required
+              [disabled]="submissionInProgress">
+        <option value="" disabled>Select Year</option>
+        <option value="1">First Year</option>
+        <option value="2">Second Year</option>
+        <option value="3">Third Year</option>
+        <option value="4">Fourth Year</option>
+      </select>
+    </div>
+
+    <button type="submit" class="submit-btn" 
+            [disabled]="admissionForm.invalid || submissionInProgress">
+      {{ submissionInProgress ? 'Submitting...' : 'Submit Application' }}
+    </button>
+  </form>
+</div>
